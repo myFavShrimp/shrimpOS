@@ -31,7 +31,8 @@ jobs:
       fail-fast: false
       matrix:
         recipe:
-          - recipe.yml
+          - recipe-main.yml
+          - recipe-nvidia.yml
 
     steps:
       # Checkout push-to-registry action GitHub repository
