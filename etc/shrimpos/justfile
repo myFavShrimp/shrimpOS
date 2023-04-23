@@ -9,7 +9,7 @@ changelogs:
 
 setup-flatpaks:
   #!/bin/bash
-  flatpaks=$(cat etc/shrimpos/flatpaks | while read line; do echo -n "$line "; done)
+  flatpaks=$(cat /etc/shrimpos/flatpaks | while read line; do echo -n "$line "; done)
   flatpak install --user --noninteractive flathub $flatpaks
   notify-send "Packagesi up to date"
 

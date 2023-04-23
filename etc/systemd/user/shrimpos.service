@@ -1,0 +1,9 @@
+[Unit]
+Description=ShrimpOS-Service
+
+[Service]
+Type=simple
+ExecStart=/etc/shrimpos/shrimpOS-startup-system.sh
+
+[Install]
+WantedBy=default.target
