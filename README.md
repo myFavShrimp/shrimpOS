@@ -1,13 +1,11 @@
-🦐 ShrimpOS
+# 🦐 ShrimpOS
 
 ShrimpOS is my personalized stable and reliable ublue based silverblue image.
-
-🛠️ Installation
 
 > **Note**
 > If you want to make your own image, the uBlue website has [instructions](https://ublue.it/making-your-own/).
 
-## Installation
+## 🛠️ Installation
 
 > **Warning**
 > This is my personal image with everything set up for **me**.
@@ -23,4 +21,5 @@ sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/myfavshrimp/shrimpos-n
 
 These images are signed with sisgstore's [cosign](https://docs.sigstore.dev/cosign/overview/). You can verify the signature by downloading the `cosign.pub` key from this repo and running the following command:
 
-    cosign verify --key cosign.pub ghcr.io/ublue-os/startingpoint
+    cosign verify --key cosign.pub ghcr.io/myfavshrimp/shrimpos
+    cosign verify --key cosign.pub ghcr.io/myfavshrimp/shrimpos-nvidia
