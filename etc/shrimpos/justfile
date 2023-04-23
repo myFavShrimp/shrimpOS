@@ -1,0 +1,19 @@
+default:
+  @just --list
+
+bios:
+  systemctl reboot --firmware-setup
+
+changelogs:
+  rpm-ostree db diff --changelogs
+
+setup-flatpaks:
+  #!/bin/bash
+  flatpaks=$(cat etc/shrimpos/flatpaks | while read line; do echo -n "$line "; done)
+  flatpak install --user --noninteractive flathub $flatpaks
+  notify-send "Packagesi up to date"
+
+update:
+  rpm-ostree update
+  flatpak update -y
+  distrobox upgrade -a

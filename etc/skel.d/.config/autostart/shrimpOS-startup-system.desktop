@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=uBlue First Boot Setup
-Comment=Sets up uBlue Desktop Correctly On FirstBoot
+Name=shrimpOS startup system
+Comment=Ensures that necessary packages are installed
 Exec=/usr/bin/yafti /etc/yafti.yml
 Icon=org.gnome.Terminal
 Type=Application
