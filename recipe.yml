@@ -1,5 +1,5 @@
 # The image will be at ghcr.io/yourusername/name
-name: startingpoint
+name: shrimpOS
 
 # The native container image to build on top of
 # images. 
@@ -10,10 +10,10 @@ base-container: ghcr.io/ublue-os/silverblue-main
 # If you use `latest`, you will be automatically updated
 # to the next major version assuming the image you're using as your base container
 # builds with the tag (all uBlue images do this). 
-fedora-version: 37
+fedora-version: 38
 
 # This description will be visible in the container metadata
-description: A starting point for further customization of uBlue images. Make your own! https://ublue.it/making-your-own/
+description: An OCI base image of Fedora with shrimps included.
 
 # These rpms will be installed from the fedora repository
 # using rpm-ostree and will be preinstalled in the final image
@@ -24,11 +24,19 @@ rpms:
 # this is just an example selection.
 # If you leave this empty you can use yafti for post-boot installation
 flatpaks:
-  - org.mozilla.firefox
-  - org.mozilla.Thunderbird
-  - com.mattjakeman.ExtensionManager
-  - org.libreoffice.LibreOffice
-  - org.gnome.DejaDup
-  - org.gustavoperedo.FontDownloader
+  - com.bitwarden.desktop
+  - com.github.flxzt.rnote
+  - com.github.marhkb.Pods
   - com.github.tchx84.Flatseal
-  - io.github.celluloid_player.Celluloid
+  - com.mattjakeman.ExtensionManager
+  - io.dbeaver.DBeaverCommunity
+  - io.github.peazip.PeaZip
+  - md.obsidian.Obsidian
+  - net.werwolv.ImHex
+  - org.filezillaproject.Filezilla
+  - org.gustavoperedo.FontDownloader
+  - org.libreoffice.LibreOffice
+  - org.mozilla.Thunderbird
+  - org.mozilla.firefox
+  - org.signal.Signal
+  - rest.insomnia.Insomnia
