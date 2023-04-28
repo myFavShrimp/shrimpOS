@@ -1,7 +1,9 @@
+ARG FEDORA_MAJOR_VERSION=38
+ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
+
 FROM rust:latest AS oxidized_toolchain_builder
 
 # install oxidized toolchain
-# TODO: get input of format `crate-name binary-name` and build/copy based on that
 RUN cargo install --locked nu \
                            zellij \
                            gitui \
@@ -13,9 +15,6 @@ RUN cargo install --locked nu \
                            dotlink \
                            fd-find \
                            just
-
-ARG FEDORA_MAJOR_VERSION=38
-ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
 ARG RECIPE
