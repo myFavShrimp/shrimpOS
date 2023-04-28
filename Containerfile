@@ -43,4 +43,4 @@ RUN rm -rf \
         /var/*
 
 # finalize container build
-ostree container commit
+RUN ostree container commit
