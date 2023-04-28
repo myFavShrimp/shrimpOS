@@ -1,4 +1,4 @@
-FROM rust:latest AS oxidized-toolchain-builder
+FROM rust:latest AS oxidized_toolchain_builder
 
 # install oxidized toolchain
 # TODO: get input of format `crate-name binary-name` and build/copy based on that
@@ -35,17 +35,17 @@ COPY build.sh /tmp/build.sh
 RUN chmod +x /tmp/build.sh && /tmp/build.sh
 
 # copy oxidized toolchain
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/zellij /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/gitui /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/bat /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/ripgrep /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/erdtree /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/repgrep /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/cargo-modules /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/dotlink /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/fd /usr/local/bin
-COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/just /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/zellij /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/gitui /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/bat /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/rg /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/et /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/rgr /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/cargo-modules /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/dotlink /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/fd /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/just /usr/local/bin
 
 # clean up 
 RUN rm -rf \
