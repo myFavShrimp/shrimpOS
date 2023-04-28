@@ -26,7 +26,5 @@ org.gnome.font-viewer
 org.gustavoperedo.FontDownloader
 org.libreoffice.LibreOffice
 org.mozilla.Thunderbird
-org.mozilla.firefox
-org.mozilla.firefox
 org.signal.Signal
 rest.insomnia.Insomnia
