@@ -35,17 +35,8 @@ COPY build.sh /tmp/build.sh
 RUN chmod +x /tmp/build.sh && /tmp/build.sh
 
 # copy oxidized toolchain
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/zellij /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/gitui /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/bat /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/rg /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/et /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/rgr /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/cargo-modules /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/dotlink /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/fd /usr/local/bin
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/nu/just /usr/local/bin
+COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/* /usr/local/bin
+RUN mv /usr/local/bin/erd /usr/local/bin/et
 
 # clean up 
 RUN rm -rf \
