@@ -1,3 +1,19 @@
+FROM rust:latest AS oxidized-toolchain-builder
+
+# install oxidized toolchain
+# TODO: get input of format `crate-name binary-name` and build/copy based on that
+RUN cargo install --locked nu \
+                           zellij \
+                           gitui \
+                           bat \
+                           ripgrep \
+                           erdtree \
+                           repgrep \
+                           cargo-modules \
+                           dotlink \
+                           fd-find \
+                           just
+
 ARG FEDORA_MAJOR_VERSION=38
 ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 
@@ -18,8 +34,23 @@ COPY --from=docker.io/mikefarah/yq /usr/bin/yq /usr/bin/yq
 COPY build.sh /tmp/build.sh
 RUN chmod +x /tmp/build.sh && /tmp/build.sh
 
-# clean up and finalize container build
+# copy oxidized toolchain
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/zellij /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/gitui /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/bat /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/ripgrep /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/erdtree /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/repgrep /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/cargo-modules /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/dotlink /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/fd /usr/local/bin
+COPY --from oxidized-toolchain-builder /root/.cargo/bin/nu/just /usr/local/bin
+
+# clean up 
 RUN rm -rf \
         /tmp/* \
-        /var/* && \
-    ostree container commit
+        /var/*
+
+# finalize container build
+ostree container commit
