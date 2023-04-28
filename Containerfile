@@ -34,6 +34,19 @@ COPY --from=docker.io/mikefarah/yq /usr/bin/yq /usr/bin/yq
 COPY build.sh /tmp/build.sh
 RUN chmod +x /tmp/build.sh && /tmp/build.sh
 
+# copy oxidized toolchain
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/zellij /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/gitui /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/bat /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/ripgrep /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/erdtree /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/repgrep /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/cargo-modules /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/dotlink /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/fd /usr/local/bin
+COPY --from oxidized-toolchain-builder /usr/local/cargo/bin/nu/just /usr/local/bin
+
 # clean up 
 RUN rm -rf \
         /tmp/* \
