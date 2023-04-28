@@ -1,4 +1,5 @@
 # 🦐 ShrimpOS
+[![build-shrimpos](https://github.com/myFavShrimp/shrimpOS/actions/workflows/build.yml/badge.svg)](https://github.com/myFavShrimp/shrimpOS/actions/workflows/build.yml)
 
 ShrimpOS is my personalized stable and reliable ublue based silverblue image.
 
