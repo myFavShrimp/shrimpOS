@@ -14,7 +14,7 @@ basearch="$(rpm -E %_arch)"
 echo "--- Install packages ---"
 
 echo "-- Install Alacritty --"
-ostree remote add atim/alacritty
+ostree remote add alacritty https://download.copr.fedorainfracloud.org/results/atim/alacritty/fedora-$releasever-$basearch/
 rpm-ostree install alacritty
 
 echo "-- Install helix --"
@@ -22,5 +22,5 @@ ostree remote add helix-editor https://download.copr.fedorainfracloud.org/result
 rpm-ostree install helix
 
 echo "-- Install starship --"
-curl -sS https://starship.rs/install.sh 
+curl -sS https://starship.rs/install.sh | sh -s -s -- -y
 echo "---"
