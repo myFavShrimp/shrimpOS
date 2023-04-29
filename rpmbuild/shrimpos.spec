@@ -18,7 +18,7 @@ shrimpOS personal binaries
 /usr/bin/gitui
 /usr/bin/bat
 /usr/bin/rg
-/usr/bin/erd
+/usr/bin/et
 /usr/bin/rgr
 /usr/bin/dotlink
 /usr/bin/fd
