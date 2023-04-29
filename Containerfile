@@ -4,7 +4,7 @@ ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 FROM rust:latest AS oxidized_toolchain_builder
 
 # install oxidized toolchain
-RUN cargo install --locked nu
+# RUN cargo install --locked nu \
                            # zellij \
                            # gitui \
                            # bat \
@@ -15,6 +15,7 @@ RUN cargo install --locked nu
                            # dotlink \
                            # fd-find \
                            # just
+RUN cargo install --locked nu fd-find
 
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
 ARG RECIPE
