@@ -2,8 +2,10 @@
 RELEASEVER="$(rpm -E %fedora)"
 BASEARCH="$(rpm -E %_arch)"
 
-# TODO: add repo url && fix `ostree remote add` command
 echo "--- Install packages ---"
+# shrimpos
+echo "-- Install shrimpos --"
+rpm-ostree install /var/shrimpos.rpm -y
 
 # coprs
 echo "-- Install Alacritty --"
@@ -12,6 +14,6 @@ rpm-ostree install alacritty -y
 echo "-- Install helix --"
 rpm-ostree install helix -y
 
-echo "-- Install starship --"
-curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir /var/usrlocal/bin -y
-echo "---"
+# echo "-- Install starship --"
+# curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir /var/usrlocal/bin -y
+# echo "---"
