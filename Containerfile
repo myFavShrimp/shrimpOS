@@ -15,7 +15,7 @@ FROM rust:latest AS oxidized_toolchain_builder
                            # dotlink \
                            # fd-find \
                            # just
-RUN cargo install --locked nu fd-find
+RUN cargo install --locked fd-find
 
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
 ARG RECIPE
