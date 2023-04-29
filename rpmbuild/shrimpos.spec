@@ -12,5 +12,14 @@ shrimpOS personal binaries
 
 
 %files
-/usr/bin/fd
 /usr/bin/starship
+/usr/bin/nu
+/usr/bin/zellij
+/usr/bin/gitui
+/usr/bin/bat
+/usr/bin/rg
+/usr/bin/erd
+/usr/bin/rgr
+/usr/bin/dotlink
+/usr/bin/fd
+/usr/bin/just

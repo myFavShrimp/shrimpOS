@@ -5,18 +5,17 @@ ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 FROM rust:latest AS oxidized_toolchain_builder
 
 # install oxidized toolchain
-# RUN cargo install --locked nu \
-                           # zellij \
-                           # gitui \
-                           # bat \
-                           # ripgrep \
-                           # erdtree \
-                           # repgrep \
-                           # cargo-modules \
-                           # dotlink \
-                           # fd-find \
-                           # just
-RUN cargo install --locked fd-find
+RUN cargo install --locked \
+    nu \
+    zellij \
+    gitui \
+    bat \
+    ripgrep \
+    erdtree \
+    repgrep \
+    dotlink \
+    fd-find \
+    just
 
 # rpm_builder ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM fedora:${FEDORA_MAJOR_VERSION} AS rpm_builder
@@ -24,8 +23,16 @@ RUN dnf install rpm-build -y
 COPY rpmbuild /var/rpmbuild
 
 # copy oxidized toolchain
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
-# RUN mv /usr/local/bin/erd /usr/local/bin/et
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/nu      /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/zellij  /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/gitui   /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/bat     /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rg      /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/erd     /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin/et
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rgr     /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/dotlink /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd      /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/just    /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin -y
 
