@@ -1,0 +1,39 @@
+[alphabetical-app-grid]
+folder-order-position='start'
+
+[clipboard-indicator]
+disable-down-arrow=true
+history-size=200
+move-item-first=true
+
+[dash-to-dock]
+animate-show-apps=true
+apply-custom-theme=false
+apply-glossy-effect=false
+background-opacity=0.80000000000000004
+custom-background-color=false
+custom-theme-customize-running-dots=false
+dash-max-icon-size=38
+dock-position='BOTTOM'
+height-fraction=0.90000000000000002
+running-indicator-dominant-color=true
+running-indicator-style='DOTS'
+show-apps-at-top=true
+show-favorites=true
+show-mounts=false
+show-show-apps-button=true
+show-trash=false
+show-windows-preview=true
+unity-backlit-items=false
+
+[rounded-window-corners]
+border-color=(0.21333333849906921, 0.21333333849906921, 0.21333333849906921, 1.0)
+border-width=1
+custom-rounded-corner-settings={'Alacritty': <{'padding': <{'left': <uint32 11>, 'right': <uint32 11>, 'top': <uint32 45>, 'bottom': <uint32 10>}>, 'keep_rounded_corners': <{'maximized': <false>, 'fullscreen': <false>}>, 'border_radius': <uint32 10>, 'smoothing': <uint32 1>, 'enabled': <true>}>}
+focused-shadow={'vertical_offset': 4, 'horizontal_offset': 0, 'blur_offset': 28, 'spread_radius': 4, 'opacity': 60}
+global-rounded-corner-settings={'padding': <{'left': <uint32 1>, 'right': <uint32 1>, 'top': <uint32 1>, 'bottom': <uint32 1>}>, 'keep_rounded_corners': <{'maximized': <false>, 'fullscreen': <false>}>, 'border_radius': <uint32 10>, 'smoothing': <uint32 1>, 'enabled': <true>}
+settings-version=uint32 5
+skip-libadwaita-app=true
+skip-libhandy-app=false
+tweak-kitty-terminal=false
+unfocused-shadow={'horizontal_offset': 0, 'vertical_offset': 2, 'blur_offset': 12, 'spread_radius': -1, 'opacity': 65}
