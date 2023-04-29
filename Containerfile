@@ -24,7 +24,7 @@ RUN dnf install rpm-build -y
 COPY rpmbuild /var/rpmbuild
 
 # copy oxidized toolchain
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/* /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
 # RUN mv /usr/local/bin/erd /usr/local/bin/et
 
 RUN rm /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin/.gitkeep
