@@ -13,5 +13,5 @@ echo "-- Install helix --"
 rpm-ostree install helix -y
 
 echo "-- Install starship --"
-curl -sS https://starship.rs/install.sh | sh -s -s -- -y
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 echo "---"
