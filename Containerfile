@@ -4,17 +4,17 @@ ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 FROM rust:latest AS oxidized_toolchain_builder
 
 # install oxidized toolchain
-RUN cargo install --locked nu \
-                           zellij \
-                           gitui \
-                           bat \
-                           ripgrep \
-                           erdtree \
-                           repgrep \
-                           cargo-modules \
-                           dotlink \
-                           fd-find \
-                           just
+RUN cargo install --locked nu
+                           # zellij \
+                           # gitui \
+                           # bat \
+                           # ripgrep \
+                           # erdtree \
+                           # repgrep \
+                           # cargo-modules \
+                           # dotlink \
+                           # fd-find \
+                           # just
 
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
 ARG RECIPE
@@ -37,7 +37,7 @@ RUN rm -rf \
 
 # copy oxidized toolchain
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/* /var/usrlocal/bin
-RUN mv /usr/local/bin/erd /usr/local/bin/et
+# RUN mv /usr/local/bin/erd /usr/local/bin/et
 
 # finalize container build
 RUN ostree container commit
