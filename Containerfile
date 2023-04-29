@@ -21,13 +21,10 @@ ARG RECIPE
 
 # copy over configuration files
 COPY etc /etc
-# COPY usr /usr
 
 COPY ${RECIPE} /tmp/shrimpos-recipe.yml
 
-# yq used in build.sh and the setup-flatpaks recipe to read the recipe.yml
-# copied from the official container image as it's not avaible as an rpm
-COPY --from=docker.io/mikefarah/yq /usr/bin/yq /usr/bin/yq
+COPY copr/* /etc/yum.repos.d/
 
 # copy and run the build script
 COPY build.sh /tmp/build.sh
