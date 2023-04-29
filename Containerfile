@@ -30,15 +30,14 @@ COPY copr/* /etc/yum.repos.d/
 COPY build.sh /tmp/build.sh
 RUN chmod +x /tmp/build.sh && /tmp/build.sh
 
-# copy oxidized toolchain
-RUN mkdir -p /usr/local/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/* /usr/local/bin
-RUN mv /usr/local/bin/erd /usr/local/bin/et
-
 # clean up 
 RUN rm -rf \
         /tmp/* \
         /var/*
+
+# copy oxidized toolchain
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/* /var/usrlocal/bin
+RUN mv /usr/local/bin/erd /usr/local/bin/et
 
 # finalize container build
 RUN ostree container commit
