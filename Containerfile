@@ -20,6 +20,7 @@ RUN cargo install --locked fd-find
 
 # rpm_builder ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM fedora:${FEDORA_MAJOR_VERSION} AS rpm_builder
+RUN dnf install rpm-build -y
 COPY rpmbuild /var/rpmbuild
 
 # copy oxidized toolchain
