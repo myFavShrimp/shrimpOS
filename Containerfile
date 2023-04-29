@@ -26,7 +26,7 @@ COPY rpmbuild /var/rpmbuild
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/* /var/rpm-build/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
 # RUN mv /usr/local/bin/erd /usr/local/bin/et
 
-RUN rm /var/rpm-build/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin/.gitkeep
+RUN rm /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin/.gitkeep
 RUN rpmbuild --define "_topdir /var/rpm-build" -v -bb shrimpos.spec
 
 # oci image ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
