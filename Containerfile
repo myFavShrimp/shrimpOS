@@ -28,7 +28,7 @@ COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/* /var/r
 # RUN mv /usr/local/bin/erd /usr/local/bin/et
 
 RUN rm /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin/.gitkeep
-RUN rpmbuild --define "_topdir /var/rpmbuild" -v -bb shrimpos.spec
+RUN rpmbuild --define "_topdir /var/rpmbuild" -v -bb /var/rpmbuild/shrimpos.spec
 
 # oci image ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
