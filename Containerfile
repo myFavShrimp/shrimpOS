@@ -27,6 +27,8 @@ COPY rpmbuild /var/rpmbuild
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin
 # RUN mv /usr/local/bin/erd /usr/local/bin/et
 
+RUN curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin -y
+
 RUN rm /var/rpmbuild/BUILDROOT/shrimpOS-1.0-1.x86_64/usr/bin/.gitkeep
 RUN rpmbuild --define "_topdir /var/rpmbuild" -v -bb /var/rpmbuild/shrimpos.spec
 

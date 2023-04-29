@@ -13,3 +13,4 @@ shrimpOS personal binaries
 
 %files
 /usr/bin/fd
+/usr/bin/starship
