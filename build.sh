@@ -1,12 +1,4 @@
 #!/bin/bash
-echo "-- Installing RPMs defined in recipe.yml --"
-rpm_packages=$(yq '.rpms[]' < /tmp/shrimpos-recipe.yml)
-for pkg in $(echo -e "$rpm_packages"); do \
-    echo "Installing: ${pkg}" && \
-    rpm-ostree install $pkg; \
-done
-echo "---"
-
 releasever="$(rpm -E %fedora)"
 basearch="$(rpm -E %_arch)"
 
