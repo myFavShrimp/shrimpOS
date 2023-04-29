@@ -31,8 +31,10 @@ COPY build.sh /tmp/build.sh
 RUN chmod +x /tmp/build.sh && /tmp/build.sh
 
 # copy oxidized toolchain
-COPY --from oxidized_toolchain_builder /usr/local/cargo/bin/* /usr/local/bin
+RUN mkdir -p /usr/local/bin
+COPY --from=oxidized_toolchain_builder /usr/local/cargo/bin/* /usr/local/bin
 RUN mv /usr/local/bin/erd /usr/local/bin/et
+RUN chmod -R 111 /usr/local/bin
 
 # clean up 
 RUN rm -rf \
