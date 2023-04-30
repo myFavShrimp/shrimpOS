@@ -6,6 +6,62 @@ ShrimpOS is my personalized stable and reliable ublue based silverblue image.
 > **Note**
 > If you want to make your own image, the uBlue website has [instructions](https://ublue.it/making-your-own/).
 
+## 🎨 Customizations
+
+Software added on top of silverblue/ublue-main
+
+Flatpaks:
+ - Bitwarden
+ - Calculator
+ - Calendar
+ - Characters
+ - Clocks
+ - Contacts
+ - DBeaver
+ - Disk Usage Analyzer
+ - Evince
+ - Extension Manager
+ - Eye of GNOME Image Viewer
+ - Fedora Media Writer
+ - Filezilla
+ - Flatseal
+ - Font Downloader
+ - Font Viewer
+ - ImHex
+ - Insomnia
+ - LibreOffice
+ - Logs
+ - Maps
+ - NautilusPreviewer
+ - Obsidian
+ - PeaZip
+ - Pods
+ - Rnote
+ - Signal
+ - TextEditor
+ - Thunderbird
+ - Weather
+
+From copr repositories:
+ - alacritty
+ - helix-editor
+
+Built from source:
+ - bat
+ - dotlink
+ - erdtree
+ - fd-find
+ - gitui
+ - just
+ - nu
+ - repgrep
+ - ripgrep
+ - zellij
+
+Gnome shell:
+ - a few changed default settings (e.g. dark mode, touchpad tap to click etc.)
+ - extensions (alphabetical-app-grid, clipboard-indicator, dash-to-dock, rounded-window-corners, tray-icons-reloaded)
+
 ## 🛠️ Installation
 
 > **Warning**

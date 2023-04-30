@@ -2,7 +2,7 @@
 RELEASEVER="$(rpm -E %fedora)"
 BASEARCH="$(rpm -E %_arch)"
 
-echo "--- Removed packaged ---"
+echo "--- Remove packages ---"
 rpm-ostree uninstall just
 echo "---"
 

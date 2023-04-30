@@ -44,7 +44,7 @@ FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
 ARG RECIPE
 
 # copy over configuration files
-COPY etc /usr/etc
+# COPY etc /usr/etc
 COPY ${RECIPE} /tmp/shrimpos-recipe.yml
 COPY copr/* /etc/yum.repos.d/
 COPY --from=rpm_builder /var/rpmbuild/RPMS/x86_64/shrimpOS-1.0-1.x86_64.rpm /var/shrimpos.rpm
