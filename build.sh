@@ -2,6 +2,10 @@
 RELEASEVER="$(rpm -E %fedora)"
 BASEARCH="$(rpm -E %_arch)"
 
+echo "--- Removed packaged ---"
+rpm-ostree uninstall just
+echo "---"
+
 echo "--- Install packages ---"
 # shrimpos
 echo "-- Install shrimpos --"
