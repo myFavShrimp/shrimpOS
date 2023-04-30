@@ -5,7 +5,7 @@ BASEARCH="$(rpm -E %_arch)"
 echo "--- Install packages ---"
 # shrimpos
 echo "-- Install shrimpos --"
-rpm-ostree install /var/shrimpos.rpm -y
+rpm-ostree install /var/shrimpos.rpm -y --force-replacefiles
 
 # coprs
 echo "-- Install Alacritty --"
