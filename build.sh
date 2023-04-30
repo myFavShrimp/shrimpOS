@@ -30,4 +30,6 @@ echo "--- Installing flatpaks ---"
 make flatpaks
 echo "--- Updating dconf databases ---"
 dconf update
+echo "--- Copying fonts ---"
+make copy-fonts
 echo "---"
