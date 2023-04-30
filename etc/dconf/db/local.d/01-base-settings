@@ -2,6 +2,16 @@
 color-scheme='prefer-dark'
 enable-animations=true
 show-battery-percentage=true
+gtk-theme='Adwaita-dark'
+
+[org/gnome/TextEditor]
+highlight-current-line=true
+indent-style='space'
+show-grid=false
+show-line-numbers=true
+show-map=false
+show-right-margin=false
+tab-width=uint32 4
 
 [org/gnome/desktop/peripherals/touchpad]
 natural-scroll=true
@@ -19,6 +29,7 @@ event-sounds=true
 experimental-features=['scale-monitor-framebuffer']
 
 [org/gnome/nautilus/icon-view]
+captions=['permissions', 'none', 'none']
 default-zoom-level='small-plus'
 
 [org/gnome/nautilus/list-view]
@@ -32,4 +43,13 @@ enabled=false
 
 [org/gtk/gtk4/settings/file-chooser]
 show-hidden=true
+sort-directories-first=true
+show-size-column=true
+show-type-column=true
+
+[org/gtk/settings/file-chooser]
+show-hidden=true
+show-size-column=true
+show-type-column=true
+sort-column='name'
 sort-directories-first=true

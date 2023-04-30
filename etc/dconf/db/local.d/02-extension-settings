@@ -1,3 +1,7 @@
+[org/gnome/shell]
+disabled-extensions=['background-logo@fedorahosted.org', 'dash-to-panel@jderose9.github.com', 'theme-switcher@fthx']
+enabled-extensions=['trayIconsReloaded@selfmade.pl', 'dash-to-dock@micxgx.gmail.com', 'clipboard-indicator@tudmotu.com', 'AlphabeticalAppGrid@stuarthayhurst']
+
 [alphabetical-app-grid]
 folder-order-position='start'
 
@@ -16,6 +20,8 @@ custom-theme-customize-running-dots=false
 dash-max-icon-size=38
 dock-position='BOTTOM'
 height-fraction=0.90000000000000002
+preferred-monitor=-2
+preferred-monitor-by-connector='eDP-1'
 running-indicator-dominant-color=true
 running-indicator-style='DOTS'
 show-apps-at-top=true
