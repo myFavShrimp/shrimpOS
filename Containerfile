@@ -19,7 +19,7 @@ FROM rust:latest AS oxidized_toolchain_builder
 
 # build_helper ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM fedora:${FEDORA_MAJOR_VERSION} AS build_helper
-RUN dnf install make git -y
+RUN dnf install make git wget unzip jq -y
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 
