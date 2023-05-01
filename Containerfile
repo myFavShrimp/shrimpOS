@@ -19,12 +19,12 @@ FROM rust:latest AS oxidized_toolchain_builder
 
 # build_helper ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM fedora:${FEDORA_MAJOR_VERSION} AS build_helper
-RUN dnf install git -y
+RUN dnf install make git -y
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 RUN git clone https://github.com/myfavshrimp/cfg.git /tmp/cfg
-RUN /usr/bin/make -f /tmp/cfg/Makefile extensions
+RUN make -f /tmp/cfg/Makefile extensions
 
 # oci image ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
