@@ -6,21 +6,20 @@ FROM rust:latest AS oxidized_toolchain_builder
 
 # install oxidized toolchain
 RUN cargo install --locked \
-    nu \
-    zellij \
-    gitui \
-    bat \
-    ripgrep \
-    erdtree \
-    repgrep \
-    dotlink \
-    fd-find \
-    just
+    nu
+    # zellij \
+    # gitui \
+    # bat \
+    # ripgrep \
+    # erdtree \
+    # repgrep \
+    # dotlink \
+    # fd-find \
+    # just
 
 # build_helper ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM fedora:${FEDORA_MAJOR_VERSION} AS build_helper
-RUN dnf install rpm-build -y
-COPY rpmbuild /tmp/rpmbuild
+RUN dnf install git -y
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 
@@ -38,15 +37,15 @@ COPY copr/* /etc/yum.repos.d/
 
 # copy tools
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/nu      /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/zellij  /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/gitui   /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/bat     /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rg      /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/erd     /usr/bin/et
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rgr     /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/dotlink /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd      /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/just    /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/zellij  /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/gitui   /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/bat     /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rg      /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/erd     /usr/bin/et
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rgr     /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/dotlink /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd      /usr/bin
+# COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/just    /usr/bin
 COPY --from=build_helper               --chmod=111 /usr/local/bin/starship      /usr/bin
 
 # copy config
