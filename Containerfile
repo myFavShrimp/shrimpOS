@@ -24,7 +24,7 @@ RUN dnf install make git -y
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 RUN git clone https://github.com/myfavshrimp/cfg.git /tmp/cfg
-RUN make -f /tmp/cfg/Makefile extensions
+RUN (cd /tmp/cfg && make extensions)
 
 # oci image ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
