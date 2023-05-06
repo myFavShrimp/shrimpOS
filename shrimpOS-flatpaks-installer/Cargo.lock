@@ -1000,7 +1000,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "shrimpOS-flatpaks-installer"
+name = "shrimpOS_flatpaks_installer"
 version = "0.1.0"
 dependencies = [
  "relm4",

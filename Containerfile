@@ -1,6 +1,14 @@
 ARG FEDORA_MAJOR_VERSION=38
 ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 
+# shrimpOS_flatpaks_installer-builder ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+FROM rust:latest AS shrimpOS_flatpaks_installer-builder
+
+RUN sudo apt install libadwaita-1-dev libgtk-4-dev protobuf-compiler -y
+COPY shrimpOS-flatpaks-installer /tmp/shrimpOS-flatpaks-installer
+
+RUN (cd /tmp/shrimpOS-flatpaks-installer && cargo build --release)
+
 # oxidized_toolchain_builder ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM rust:latest AS oxidized_toolchain_builder
 
@@ -47,6 +55,8 @@ COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/dotlink 
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/just    /usr/bin
 COPY --from=build_helper               --chmod=111 /usr/local/bin/starship      /usr/bin
+
+COPY --from=shrimpOS_flatpaks_installer-builder --chmod=111 /tmp/shrimpOS-flatpaks-installer/target/release/shrimpOS_flatpaks_installer /usr/bin
 
 # copy config
 COPY --from=build_helper /tmp/cfg/gnome                    /usr/etc/dconf/db/local.d/

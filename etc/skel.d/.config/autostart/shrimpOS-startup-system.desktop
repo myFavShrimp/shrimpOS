@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=shrimpOS startup system
 Comment=Ensures that necessary packages are installed
-Exec=/usr/bin/yafti /etc/yafti.yml
+Exec=/usr/bin/shrimpOS_flatpaks_installer
 Icon=org.gnome.Terminal
 Type=Application
 Categories=Utility;System;
