@@ -2,7 +2,7 @@ ARG FEDORA_MAJOR_VERSION=38
 ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 
 # shrimpOS_flatpaks_installer-builder ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-FROM rust:latest AS shrimpOS_flatpaks_installer-builder
+FROM rust:bookworm AS shrimpOS_flatpaks_installer-builder
 
 RUN apt update
 RUN apt install libadwaita-1-dev libgtk-4-dev protobuf-compiler -y
