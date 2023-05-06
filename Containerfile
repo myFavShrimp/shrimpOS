@@ -66,10 +66,6 @@ COPY --from=build_helper /usr/share/gnome-shell/extensions /usr/share/gnome-shel
 # copy fonts
 COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/hack
 
-# flatpaks
-RUN git clone https://github.com/myfavshrimp/cfg.git /tmp/cfg
-RUN (cd /tmp/cfg && make flatpaks)
-
 # copy and run the build script
 COPY build.sh /tmp/build.sh
 RUN chmod +x /tmp/build.sh && /tmp/build.sh
