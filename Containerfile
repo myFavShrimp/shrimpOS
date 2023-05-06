@@ -4,9 +4,10 @@ ARG BASE_CONTAINER_URL=ghcr.io/ublue-os/silverblue-main
 # shrimpOS_flatpaks_installer-builder ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM rust:latest AS shrimpOS_flatpaks_installer-builder
 
+RUN apt update
 RUN apt install libadwaita-1-dev libgtk-4-dev protobuf-compiler -y
-COPY shrimpOS-flatpaks-installer /tmp/shrimpOS-flatpaks-installer
 
+COPY shrimpOS-flatpaks-installer /tmp/shrimpOS-flatpaks-installer
 RUN (cd /tmp/shrimpOS-flatpaks-installer && cargo build --release)
 
 # oxidized_toolchain_builder ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
