@@ -43,7 +43,7 @@ ARG RECIPE
 # copy configuration files
 COPY ${RECIPE} /tmp/shrimpos-recipe.yml
 COPY copr/* /usr/etc/yum.repos.d/
-COPY etc/* /usr/etc/
+COPY etc/ /usr/etc/
 
 # copy tools
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/nu      /usr/bin

@@ -1,6 +1,4 @@
 #!/bin/bash
-RELEASEVER="$(rpm -E %fedora)"
-BASEARCH="$(rpm -E %_arch)"
 
 echo "--- Remove packages ---"
 rpm-ostree uninstall just
