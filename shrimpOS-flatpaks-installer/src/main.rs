@@ -78,6 +78,13 @@ impl Component for AppModel {
             .valign(gtk::Align::End)
             .build();
 
+        let h_content_box = gtk::Box::builder()
+            .orientation(gtk::Orientation::Horizontal)
+            .halign(gtk::Align::Start)
+            .valign(gtk::Align::End)
+            .spacing(15)
+            .build();
+
         let v_main_box = gtk::Box::builder()
             .orientation(gtk::Orientation::Vertical)
             .spacing(15)
@@ -91,7 +98,8 @@ impl Component for AppModel {
             .orientation(gtk::Orientation::Vertical)
             .build();
         let scrollable = gtk::ScrolledWindow::builder()
-            .height_request(250)
+            .height_request(500)
+            .width_request(250)
             .child(&v_flatpaks_box)
             .has_frame(true)
             .build();
@@ -119,7 +127,8 @@ impl Component for AppModel {
             .left_margin(10)
             .right_margin(10)
             .top_margin(10)
-            .height_request(250)
+            .height_request(500)
+            .width_request(510)
             .wrap_mode(gtk::WrapMode::Word)
             .pixels_below_lines(8)
             .build();
@@ -133,9 +142,10 @@ impl Component for AppModel {
         // window composition
         window.set_child(Some(&v_main_box));
         v_main_box.append(&label);
-        v_main_box.append(&scrollable);
-        v_main_box.append(&output);
+        v_main_box.append(&h_content_box);
         v_main_box.append(&h_button_box);
+        h_content_box.append(&scrollable);
+        h_content_box.append(&output);
         h_button_box.set_margin_all(5);
         h_button_box.set_start_widget(Some(&close_button));
         h_button_box.set_end_widget(Some(&install_button));
@@ -159,6 +169,7 @@ impl Component for AppModel {
                         .register(async move {
                             let mut process = dbg!(tokio::process::Command::new("flatpak")
                                 .arg("install")
+                                .arg("flathub")
                                 .args(dbg!(flatpaks))
                                 .stdout(Stdio::piped())
                                 .stderr(Stdio::piped())
