@@ -171,6 +171,7 @@ impl Component for AppModel {
                                 .arg("install")
                                 .arg("flathub")
                                 .args(dbg!(flatpaks))
+                                .arg("-y")
                                 .stdout(Stdio::piped())
                                 .stderr(Stdio::piped())
                                 .kill_on_drop(true))
