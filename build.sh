@@ -11,7 +11,3 @@ rpm-ostree install alacritty -y
 echo "-- Install helix --"
 rpm-ostree install helix -y
 echo "---"
-
-echo "--- Updating dconf databases ---"
-dconf update
-echo "---"

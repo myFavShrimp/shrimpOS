@@ -45,6 +45,9 @@ COPY ${RECIPE} /tmp/shrimpos-recipe.yml
 COPY copr/* /usr/etc/yum.repos.d/
 COPY etc/ /usr/etc/
 
+RUN chmod 555 /usr/etc/shrimpos/user-service.sh
+RUN chmod 555 /usr/etc/shrimpos/system-service.sh
+
 # copy tools
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/nu      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/zellij  /usr/bin
