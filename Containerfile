@@ -48,6 +48,9 @@ COPY etc/ /usr/etc/
 RUN chmod 555 /usr/etc/shrimpos/user-service.sh
 RUN chmod 555 /usr/etc/shrimpos/system-service.sh
 
+RUN mkdir /usr/etc/systemd/system/default.target.wants
+RUN ln -s /usr/etc/systemd/system/shrimpos.service /usr/etc/systemd/system/default.target.wants/shrimpos.service
+
 # copy tools
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/nu      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/zellij  /usr/bin
