@@ -67,8 +67,8 @@ COPY --from=build_helper               --chmod=111 /usr/local/bin/starship      
 COPY --from=shrimpOS_flatpaks_installer-builder --chmod=111 /tmp/shrimpOS-flatpaks-installer/target/release/shrimpOS_flatpaks_installer /usr/bin
 
 # copy config
-COPY --from=build_helper /tmp/cfg/gnome                    /usr/etc/dconf/db/local.d/
-COPY --from=build_helper /usr/share/gnome-shell/extensions /usr/share/gnome-shell/extensions
+COPY --from=build_helper             /tmp/cfg/gnome                    /usr/etc/dconf/db/local.d/
+COPY --from=build_helper --chmod=664 /usr/share/gnome-shell/extensions /usr/share/gnome-shell/extensions
 
 # copy fonts
 COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/hack
