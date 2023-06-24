@@ -35,6 +35,7 @@ RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 RUN git clone https://github.com/myfavshrimp/cfg.git /tmp/cfg
 RUN mkdir -p /usr/share/gnome-shell/extensions/
 RUN (cd /tmp/cfg && make extensions)
+RUN chmod -R 755 /usr/share/gnome-shell/extensions
 
 # oci image ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
