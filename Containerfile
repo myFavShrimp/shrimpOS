@@ -68,7 +68,7 @@ COPY --from=shrimpOS_flatpaks_installer-builder --chmod=111 /tmp/shrimpOS-flatpa
 
 # copy config
 COPY --from=build_helper             /tmp/cfg/gnome                    /usr/etc/dconf/db/local.d/
-COPY --from=build_helper --chmod=664 /usr/share/gnome-shell/extensions /usr/share/gnome-shell/extensions
+COPY --from=build_helper --chmod=755 /usr/share/gnome-shell/extensions /usr/share/gnome-shell/extensions
 
 RUN chmod -R 644 /usr/share/gnome-shell/extensions
 
