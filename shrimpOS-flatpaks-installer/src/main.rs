@@ -139,13 +139,20 @@ impl Component for AppModel {
             v_flatpaks_box.append(&flatpak_label);
         });
 
+        let scrollable2 = gtk::ScrolledWindow::builder()
+            .height_request(500)
+            .width_request(510)
+            .child(&output)
+            .has_frame(true)
+            .build();
+
         // window composition
         window.set_child(Some(&v_main_box));
         v_main_box.append(&label);
         v_main_box.append(&h_content_box);
         v_main_box.append(&h_button_box);
         h_content_box.append(&scrollable);
-        h_content_box.append(&output);
+        h_content_box.append(&scrollable2);
         h_button_box.set_margin_all(5);
         h_button_box.set_start_widget(Some(&close_button));
         h_button_box.set_end_widget(Some(&install_button));
