@@ -74,7 +74,7 @@ COPY --from=build_helper --chmod=755 /usr/share/gnome-shell/extensions /usr/shar
 RUN chmod -R 755 /usr/share/gnome-shell/extensions
 
 # copy fonts
-COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/hack
+COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/
 
 # copy and run the build script
 COPY build.sh /tmp/build.sh
