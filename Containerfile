@@ -25,6 +25,8 @@ RUN cargo install --locked \
     dotlink \
     fd-find \
     just
+    
+RUN cargo install --git https://github.com/myFavShrimp/Clave.git --rev ec38dbb
 
 # build_helper ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM fedora:${FEDORA_MAJOR_VERSION} AS build_helper
@@ -64,6 +66,7 @@ COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/dotlink 
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/just    /usr/bin
 COPY --from=build_helper               --chmod=111 /usr/local/bin/starship      /usr/bin
+COPY --from=build_helper               --chmod=111 /usr/local/bin/clave         /usr/bin
 
 COPY --from=shrimpOS_flatpaks_installer-builder --chmod=111 /tmp/shrimpOS-flatpaks-installer/target/release/shrimpOS_flatpaks_installer /usr/bin
 
