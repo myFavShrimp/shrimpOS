@@ -80,8 +80,9 @@ RUN chmod -R 755 /usr/share/gnome-shell/extensions
 COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/
 
 # copy and run the build script
-COPY build.sh /tmp/build.sh
-RUN chmod +x /tmp/build.sh && /tmp/build.sh
+RUN rpm-ostree uninstall just
+RUN rpm-ostree install -y alacritty openssl1.1 helix
+RUN dnf groupinstall 'Development Tools' -y
 
 # clean up 
 RUN rm -rf \
