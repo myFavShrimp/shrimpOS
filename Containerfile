@@ -49,7 +49,7 @@ ARG RECIPE
 COPY ${RECIPE} /tmp/shrimpos-recipe.yml
 COPY copr/* /usr/etc/yum.repos.d/
 COPY etc/ /usr/etc/
-COPY --from build_helper /tmp/development_tools /tmp/development_tools
+COPY --from=build_helper /tmp/development_tools /tmp/development_tools
 
 RUN chmod 555 /usr/etc/shrimpos/user-service.sh
 RUN chmod 555 /usr/etc/shrimpos/system-service.sh
