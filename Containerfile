@@ -40,6 +40,7 @@ RUN (cd /tmp/cfg && make extensions)
 RUN chmod -R 755 /usr/share/gnome-shell/extensions
 
 RUN dnf group info 'Development Tools' | awk '1;/ Optional Packages/{exit}' | awk '/^  /' > /tmp/development_tools
+RUN dnf group info 'C Development Tools and Libraries' | awk '1;/ Optional Packages/{exit}' | awk '/^  /' > /tmp/c_development_tools_libraries
 
 # oci image ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
@@ -86,6 +87,7 @@ COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/
 RUN rpm-ostree uninstall just
 RUN rpm-ostree install -y alacritty openssl1.1 glibc libinput-devel binutils
 RUN /bin/bash -c 'rpm-ostree install -y $(cat /tmp/development_tools)'
+RUN /bin/bash -c 'rpm-ostree install -y $(cat /tmp/c_development_tools_libraries)'
 
 # clean up 
 RUN rm -rf \
