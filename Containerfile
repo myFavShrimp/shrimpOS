@@ -39,6 +39,8 @@ RUN mkdir -p /usr/share/gnome-shell/extensions/
 RUN (cd /tmp/cfg && make extensions)
 RUN chmod -R 755 /usr/share/gnome-shell/extensions
 
+RUN dnf group info 'Development Tools' | awk '1;/ Optional Packages/{exit}' | awk '/^  /' > /tmp/development_tools
+
 # oci image ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 FROM ${BASE_CONTAINER_URL}:${FEDORA_MAJOR_VERSION}
 ARG RECIPE
@@ -47,6 +49,7 @@ ARG RECIPE
 COPY ${RECIPE} /tmp/shrimpos-recipe.yml
 COPY copr/* /usr/etc/yum.repos.d/
 COPY etc/ /usr/etc/
+COPY --from build_helper /tmp/development_tools /tmp/development_tools
 
 RUN chmod 555 /usr/etc/shrimpos/user-service.sh
 RUN chmod 555 /usr/etc/shrimpos/system-service.sh
@@ -81,8 +84,8 @@ COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/
 
 # copy and run the build script
 RUN rpm-ostree uninstall just
-RUN rpm-ostree install -y alacritty openssl1.1 helix
-RUN dnf groupinstall 'Development Tools' -y
+RUN rpm-ostree install -y alacritty openssl1.1
+RUN /bin/bash -c 'rpm-ostree install -y $(cat /tmp/development_tools)'
 
 # clean up 
 RUN rm -rf \
