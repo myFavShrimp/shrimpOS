@@ -86,7 +86,7 @@ COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/
 
 # copy and run the build script
 RUN rpm-ostree uninstall just
-RUN rpm-ostree install -y alacritty openssl1.1 glibc libinput-devel binutils
+RUN rpm-ostree install -y alacritty openssl1.1 glibc libinput-devel binutils lld
 RUN /bin/bash -c 'rpm-ostree install -y $(cat /tmp/development_tools)'
 RUN /bin/bash -c 'rpm-ostree install -y $(cat /tmp/c_development_tools_libraries)'
 
