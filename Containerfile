@@ -71,7 +71,7 @@ COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/dotlink 
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/just    /usr/bin
 COPY --from=build_helper               --chmod=111 /usr/local/bin/starship      /usr/bin
-COPY --from=oxidized_toolchain_builder               --chmod=111 /usr/local/cargo/bin/clave         /usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/clave   /usr/bin
 
 COPY --from=shrimpOS_flatpaks_installer-builder --chmod=111 /tmp/shrimpOS-flatpaks-installer/target/release/shrimpOS_flatpaks_installer /usr/bin
 
@@ -84,9 +84,10 @@ RUN chmod -R 755 /usr/share/gnome-shell/extensions
 # copy fonts
 COPY --from=build_helper /tmp/cfg/fonts/Hack /usr/share/fonts/
 
-# copy and run the build script
+# package installation
 RUN rpm-ostree uninstall just
 RUN rpm-ostree install -y alacritty openssl1.1 glibc libinput-devel binutils lld
+RUN ln -s /usr/bin/lld /usr/bin/ld
 RUN /bin/bash -c 'rpm-ostree install -y $(cat /tmp/development_tools)'
 RUN /bin/bash -c 'rpm-ostree install -y $(cat /tmp/c_development_tools_libraries)'
 
