@@ -22,10 +22,10 @@ RUN cargo install --locked \
     ripgrep \
     erdtree \
     repgrep \
-    dotlink \
     fd-find \
     just \
-    git-delta
+    git-delta \
+    lnkr
     
 RUN cargo install --git https://github.com/myFavShrimp/Clave.git --rev ec38dbb
 
@@ -68,12 +68,12 @@ COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/bat     
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rg      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/erd     /usr/bin/et
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/rgr     /usr/bin
-COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/dotlink /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/fd      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/just    /usr/bin
 COPY --from=build_helper               --chmod=111 /usr/local/bin/starship      /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/clave   /usr/bin
 COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/delta   /usr/bin
+COPY --from=oxidized_toolchain_builder --chmod=111 /usr/local/cargo/bin/lnkr    /usr/bin
 
 COPY --from=shrimpOS_flatpaks_installer-builder --chmod=111 /tmp/shrimpOS-flatpaks-installer/target/release/shrimpOS_flatpaks_installer /usr/bin
 
